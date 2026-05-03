@@ -28,7 +28,8 @@ class PostForm
                                     ]),
                                 \Filament\Forms\Components\Select::make('category_id')
                                     ->label('Category')
-                                    ->options(\App\Models\Category::all()->pluck('name', 'id'))
+                                    ->relationship('category', 'name')
+                                    ->searchable()
                                     ->required(),
                                 \Filament\Forms\Components\ColorPicker::make('color'),
                             ])->columns(2),
@@ -52,7 +53,9 @@ class PostForm
                     \Filament\Schemas\Components\Section::make('Meta Data')
                         ->icon('heroicon-o-tag')
                         ->schema([
-                            \Filament\Forms\Components\TagsInput::make('tags'),
+                            \Filament\Forms\Components\Select::make('tags')
+                                ->relationship('tags', 'name')
+                                ->multiple(),
                             \Filament\Forms\Components\Checkbox::make('published'),
                             \Filament\Forms\Components\DatePicker::make('published_at'),
                         ]),

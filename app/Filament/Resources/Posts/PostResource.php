@@ -33,7 +33,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\Resources\Posts\RelationManagers\TagsRelationManager::class,
         ];
     }
 
